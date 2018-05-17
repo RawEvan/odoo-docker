@@ -1,3 +1,40 @@
+# Example of docker-compose.yml
+
+version: '2.0'
+services:
+
+  elico10_pycharm:
+    build: ./
+    image: rawevan/odoo-pycharm:10.0
+    ports:
+      - 127.0.0.1:8079:8069
+    external_links:
+      - psqlcompose_postgres_1:db
+    volumes:
+      - ./volumes/odoo/addons:/opt/odoo/additional_addons
+      - ./volumes/odoo/filestore:/opt/odoo/data/filestore
+      - ./volumes/odoo/sessions:/opt/odoo/data/sessions
+      - ~/.ssh:/opt/odoo/ssh:ro
+      - ./volumes/odoo/.PyCharmCE2018.1:/opt/odoo/.PyCharmCE2018.1
+      - ./volumes/odoo/.idea:/opt/odoo/.idea
+      - ./volumes/odoo/.java:/opt/odoo/.java
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      #- FETCH_OCA_DEPENDENCIES=False
+      #- ADDONS_REPO=https://github.com/OCA/project.git
+      - ODOO_DB_USER=odoo
+      - ODOO_DB_PASSWORD=odoo
+      - ODOO_ADMIN_PASSWD=odoo
+      - TARGET_UID=1000
+      - DISPLAY
+    privileged:
+      True
+
+# issue
+
+* Raise error about X11
+run command: xhost +
+
 # elicocorp/odoo
 Simple yet powerful [Odoo][odoo] image for [Docker][dk] maintained by
 [Elico Corporation][ec].
