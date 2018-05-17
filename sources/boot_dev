@@ -196,6 +196,13 @@ function start {
         "/opt/odoo/sources/odoo/$SERVICE_BIN" -c "$odoo_conf_file" $*
 }
 
+
+function _ensure_odoo_user_owns_pycharm_volumes {
+    _ensure_odoo_user_owns_volume /opt/odoo/.PyCharmCE2018.1
+    _ensure_odoo_user_owns_volume /opt/odoo/.idea
+    _ensure_odoo_user_owns_volume /opt/odoo/.java
+}
+
 function pycharm {
     # Host user mapping
     odoo_user='odoo'
@@ -207,6 +214,7 @@ function pycharm {
     # them with root instead of the target Odoo user. Making sure to give back
     # the ownership to the corresponding host user.
     _ensure_odoo_user_owns_volumes
+    _ensure_odoo_user_owns_pycharm_volumes
 
     echo $log_src[`date +%F.%H:%M:%S`]' Checking special requirements...'
     bash /opt/scripts/startup.sh
