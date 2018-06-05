@@ -1,4 +1,4 @@
-# Example of docker-compose.yml
+## Example of docker-compose.yml
 
 version: '2.0'
 services:
