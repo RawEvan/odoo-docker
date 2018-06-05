@@ -1,5 +1,6 @@
 ## Example of docker-compose.yml
 
+```
 version: '2.0'
 services:
 
@@ -29,10 +30,11 @@ services:
       - DISPLAY
     privileged:
       True
-
+```
 # issue
 
 * Raise error about X11
+
 run command: xhost +
 
 # elicocorp/odoo
