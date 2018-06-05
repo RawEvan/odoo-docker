@@ -19,3 +19,4 @@ RUN rm -rf /var/lib/apt-lists; rm -rf /tmp/*; apt-get purge wget -y; apt-get aut
 RUN /usr/bin/python2.7 ${PYCHARM_HOME}/helpers/pydev/setup_cython.py build_ext --inplace
 ADD sources/boot_dev /usr/bin/boot
 ADD sources/startup.sh /opt/scripts/startup.sh
+ADD sources/pycharm.png ${PYCHARM_HOME}/bin/pycharm.png
